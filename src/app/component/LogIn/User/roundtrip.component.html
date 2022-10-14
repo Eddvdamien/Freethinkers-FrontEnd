@@ -1,0 +1,142 @@
+<p>round trip works!</p>
+<div class="container" *ngIf="table">
+    <table class="table" *ngIf="gt" #flightdetails>
+        <caption>Going Away</caption>
+        <thead>
+            <tr>
+                <th>Flight Id</th> <!--[routerLink]="['manageflight',i.flight]"-->
+                <th>Flight Name</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>DepartureOn</th>
+                <th>ArrivalOn</th>
+                <th *ngIf="Eseating">E-Class Price</th>
+                <th *ngIf="Bseat">B-Class Price</th>
+                <th> Click to Book</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr *ngFor="let i of usr">
+                <td >{{i.flight}}</td>
+                <td>{{i.flightName}}</td>
+                <td>{{i.source}}</td>
+                <td>{{i.destination}}</td>
+                <td>{{i.departureOn}}</td>
+                <td>{{i.arrivalOn}}</td>
+                <td *ngIf="Eseating">{{i.ePrice}}</td>
+                <td *ngIf="Bseat">{{i.bPrice}}</td>
+                <td><button class="btn btn-outline-info btn-blcok" type="button" 
+                    style="color:blueviolet;" (click)="Goingtrip(i.flight)"> Leaving Trip  
+                   <span class="fa fa-pencil-square-o"></span> 
+                   </button>
+               </td> 
+                
+                
+                                
+            </tr>
+          
+                           
+        </tbody>
+    </table>
+    <table class="table" *ngIf="usr1" #flightdetails>
+        <caption> Returning Back</caption>
+        <thead>
+            <tr>
+                <th>Flight Id</th> 
+                <th>Flight Name</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>DepartureOn</th>
+                <th>ArrivalOn</th>
+                <th *ngIf="Eseating">E-Class Price</th>
+                <th *ngIf="Bseat">B-Class Price</th>
+                <th> Click to Book</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let f of usr1">
+                <td>{{f.flight}}</td>
+                <td>{{f.flightName}}</td><td>{{f.source}}</td><td>{{f.destination}}</td><td>{{f.departureOn}}</td><td>{{f.arrivalOn}}</td><td *ngIf="Eseating">{{f.ePrice}}</td><td *ngIf="Bseat">{{f.bPrice}}</td>
+                <td><button class="btn btn-outline-info btn-blcok" type="button" 
+                    style="color:blueviolet;" (click)="Returningtrip(f.flight)">Return Trip
+                   <span class="fa fa-pencil-square-o"></span> 
+                   </button>
+               </td> 
+            </tr>
+        </tbody>
+       
+    </table>
+   
+</div>
+<div class="container" *ngIf="search">
+    <div class="row">
+        <div class="panel-heading">
+            <h2 style="color:rgb(77, 20, 147); text-align: center;" class="font-weight-bold pt-3" > Search for Round trip <i class="fa fa-pencil-square-o" aria-hidden="true"></i></h2>
+        </div>
+        <div class="panel-body">
+            <form action="" #SFform="ngForm">
+                <div class="input-field">
+                    <label for="source"><i class="fa fa-map-marker" aria-hidden="true"><i class="fa fa-plane m-2" aria-hidden="true"></i></i> Enter the Boarding City: </label>
+                    <select name="source" id="from"  #source class="form-select" [(ngModel)]="us.source" required>
+                        <option value="Bengaluru">Bengaluru</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Culcutta">Culcutta</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Hyderbad">Hyderabad</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Nagpur">Nagpur</option>
+                        <option value="Pune">Pune</option>
+                    </select>
+                </div>
+                <div class="input-filed">
+                    <label for="desti"> <i class="fa fa-plane m-2" aria-hidden="true"><i class="fa fa-map-marker m-1" aria-hidden="true"></i></i>Enter the Destination:</label>
+                    <select name="destination" id="desti" class="form-select" [(ngModel)]="us.destination" #desti required>
+                        <option value="Bengaluru">Bengaluru</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Culcutta">Culcutta</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Hyderbad">Hyderabad</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Nagpur">Nagpur</option>
+                        <option value="Pune">Pune</option>
+                    </select>
+                </div>
+                <p *ngIf="source.value==desti.value" style="color: red;">Please change the Cities</p>
+                <div class="input-field">
+                    <label for="ddate"><i class="fa fa-calendar" aria-hidden="true"></i> Enter the Date of Departure: </label>
+                    <input type="date" class="form-control" required [(ngModel)]="us.departuredate" name="ddate" #ddate=ngModel/>
+                </div>
+                <p *ngIf="!ddate.valid"> Please enter the date of departure</p>
+                <div class="input-field">
+                    <label for="rdate"><i class="fa fa-calendar" aria-hidden="true"></i> Enter the Date of Arrival: </label>
+                    <input type="date" class="form-control" required [(ngModel)]="us.arrivaldate" name="rdate" #rdate=ngModel/>
+                </div>
+                <p *ngIf="!rdate.valid"> Please enter the date of departure</p>
+                <div class="input-field">
+                    <label for="seat">Enter the Seat Category: </label>
+                    <select name="seat" id="seat" class="form-select" #seat="ngModel" [(ngModel)]="us.seattype" required>
+                        <option value="Etype">Economy Class</option>
+                        <option value="Btype">Business Class</option>
+                    </select>
+                </div>
+                <p *ngIf="!seat.valid">Please select the category</p>
+                <div class="input-field">
+                    <label for="aged"> <i class="fa fa-blind" aria-hidden="true"></i>Enter the number of Adult Passenger:</label>
+                    <input type="number" #pa="ngModel" name="aged" class="form-control" required [(ngModel)]="us.passengeradult" [defaultValue]="1"[min]="1"/>
+                </div>
+                <p *ngIf="!pa.valid">Please select the number of Adults are travelling</p>
+                <div class="input-field">
+                    <label for="child"> <i class="fa fa-male" aria-hidden="true"></i>Enter the number of Child Passenger:</label>
+                    <input type="number" #pc="ngModel" name="child" class="form-control" required [(ngModel)]="us.passengerchil" [defaultValue]="0"[min]="0"/>
+                </div>
+                <div class="input-field">
+                    <label for="infant"><i class="fa fa-child" aria-hidden="true"></i>Enter the number of Infant Passenger:</label>
+                    <input type="number" #pi="ngModel" name="infant" class="form-control" required [(ngModel)]="us.passengerinfant" [defaultValue]="0"[min]="0"/>
+                </div>
+                <button class="btn btn-secondary mt-2" type="button"(click)="Search()" [disabled]="!SFform.valid">Search</button>
+
+            </form>
+        </div>
+    </div>
+</div>

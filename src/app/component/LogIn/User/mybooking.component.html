@@ -1,0 +1,55 @@
+<div class="container bg-light">
+    <h3 class="heading" style="color:blueviolet; text-align:center">Booking History</h3>
+    <button class="btn btn-outline-primary" type="button"(click)="ontoloadHistory()">Click here for the entries</button> 
+    <div class="container" *ngIf="cancereq" >
+        <h4 style="color:red; font-style: oblique;"> Cacellation Policies are:</h4>
+        <p>Cancellations made 7 days or more in advance of the event date, will receive a 100% refund.</p>
+        <p>Cancellations made within 3 - 6 days will incur a 20% fee.</p>
+        <p>Cancellations made within 48 hours to the event will incur a 100% fee.</p>
+    </div>
+    <table class="table" *ngIf="bhtable">
+        <thead>
+            <tr>
+                
+                <th>Passenger Id</th>
+                <th>Flight Id</th>
+                <th>Passenger Name</th>
+                <th>Flight Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Price</th>
+                           
+                <th>Source</th>
+                <th>Departure On</th>
+                <th>Destination</th>
+                <th>Arrival On</th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of bookinghistory">
+                
+               
+                <td>{{i.passengerId}}</td>
+                <td>{{i.flight}}</td>
+                <td>{{i.passengerName}}</td>
+                <td>{{i.flightName}}</td>
+                <td>{{i.age}}</td>
+                <td>{{i.gender}}</td>
+                <td>{{i.ePrice}}</td>
+               
+               
+                
+                <td>{{i.source}}</td>
+                <td>{{i.departureOn}}</td>
+                <td>{{i.destination}}</td>
+               
+                <td>{{i.arrivalOn}}</td>
+                <td><a id="link" class="fa fa-pencil-square-o" style="text-decoration: none;font-weight: 100;" (click)="onCancellation(i.bookingId)">Cancel Request</a> </td>
+               
+            </tr>
+        </tbody>
+    </table>
+   
+</div>

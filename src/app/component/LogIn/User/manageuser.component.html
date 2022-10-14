@@ -1,0 +1,72 @@
+
+<div class="outer">
+    <h2 style="color:rgb(153, 53, 214); text-align: center;" class="font-weight-bold pt-3" >{{userdetailsbyid.userName}},</h2>
+<div class="container bg-light">
+    <h4 style="color:rgb(128, 76, 76); text-align: center;" class="font-weight-bold pt-3">Please give attention while filling <i class="fa fa-address-card" aria-hidden="true"></i></h4>
+    <div class="row">
+        <div class="panel-heading">
+            <h2 style="color:rgb(77, 20, 147); text-align: center;" class="font-weight-bold pt-3" > Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></h2>
+        </div>
+        <div class="panel-body">
+            <form action="" #tdRform="ngForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <div class="input-field">
+                        <label for="username"><span class="fa fa-user p-2"></span>Enter the Username : </label>
+                        <input type="text" placeholder="Username" name="username" ngModel #un="ngModel" class="form-control" [(ngModel)]="userdetailsbyid.userName" required/>
+                    </div>
+                </div>
+                <span class="help-block" *ngIf="!un.valid&&un.touched">please enter the username</span>
+                <div class="form-group">
+                    <div class="input-field">
+                        <label for="fullname"><span class="fa fa-id-card p-2"></span>Enter the Full Name : </label>
+                        <input type="text" placeholder="fullname" name="fullname" ngModel #fn="ngModel" class="form-control"[(ngModel)]="userdetailsbyid.fullName" required/>
+                    </div>
+                </div>
+                <span class="help-block" *ngIf="!fn.valid&&fn.touched">please enter name</span>
+                <div class="form-group">
+                    <div class="input-field">
+                        <label for="email"><span class="fa fa-envelope p-2"></span>Enter the Mail Id : </label>
+                        <input type="email" name="email" #email="ngModel" class="form-control" [(ngModel)]="userdetailsbyid.emailId" required email />
+                    </div>
+                </div>
+                <span class="help-block" *ngIf="!email.valid&&email.touched">please enter email</span>
+                <div class="form-group">
+                    <div class="input-field">
+                        <label for="gender"><span class="fa fa-male"></span><span class="fa fa-female"></span> Enter the Gender: </label>
+                        <select name="sex" id="gender" class="form-control" [(ngModel)]="userdetailsbyid.gender"><span class="fa fa-caret-square-o-down p-2"></span>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-field">
+                        <label for="age"><span class="fa fa-birthday-cake p-2"></span>Enter the Age: </label>
+                        <input type="number" id="age" class="form-control" #age="ngModel" name="age" [(ngModel)]="userdetailsbyid.age" required [min]="18"/>
+                    </div>
+                </div>
+                <span class="help-block" *ngIf="!age.valid&&age.touched">please enter age</span>
+                <div class="form-group">
+                    <div class="input-field">
+                        <label for="phone"><span class="fa fa-mobile p-2"></span>Enter the Phone Number: </label>
+                        <input type="number" id="phone" class="form-control"#phone="ngModel" name="phone" [(ngModel)]="userdetailsbyid.phone"  required/>
+                    </div>
+                </div>  
+                <span class="help-block" *ngIf="!phone.valid&&phone.touched">please enter phone number</span>                     
+
+                <div class="form-group pt-3">
+                    <div class="input-field">
+                        <label for="password"><span class="fa fa-lock p-2"></span>Enter the Password : </label>
+                        <input type="password" placeholder="Password" name="password" #ph="ngModel" class="form-control" [(ngModel)]="userdetailsbyid.password" minlength="5" required/>
+                    </div>
+                </div>
+                <span class="help-block" *ngIf="!ph.valid&&ph.touched">please enter password</span>
+                
+                <button class="btn btn-primary btn-blcok mt-4 w-100" type="submit" 
+                    (click)="onToPassdata()" [disabled]="!tdRform.valid">
+                            Submit<span class="fa fa-pencil-square-o"></span> 
+                </button>
+            </form>           
+    </div>
+</div>
+</div>

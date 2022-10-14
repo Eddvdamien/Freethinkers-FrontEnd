@@ -1,0 +1,71 @@
+<div class="container bg-light">
+    <nav class="navbar navbar-light bg-light">
+        <form class="container-fluid justify-content-right">
+          <button class="btn btn-outline-primary me-2" type="button" routerLink="searchflight"><i class="fa fa-plane" aria-hidden="true"></i></button>
+          <button class="btn btn-outline-success m-auto" type="button" routerLink="mybooking" >My Bookings</button>
+          <button class="btn btn-outline-danger me-2" type="button" routerLink="/userlogin">Log Out<i class="fa fa-sign-out" aria-hidden="true"></i></button>
+        </form>
+      </nav>
+    <div class="row">
+        <div class="panel-heading">
+            <h2 style="color:blue; text-align: center; font-style: oblique; font-family: 'Times New Roman', Times, serif;" class="font-weight-bold pt-3" >Hello <span style="color:black;">{{userinfo.userName}}</span>, Welcome to our Air Line Ticketing system </h2>
+        </div>
+        <div class="panel-body">
+            <div class="container my-3">
+                <h4 class="mb-3" style="color:rgb(9, 9, 153); font-style: oblique;">Entered Details of <span style="color:black;">{{userinfo.userName}}</span> is:</h4>
+                <table class="table" *ngIf="userinfo" #userdetails>
+                    <thead>
+                        <tr>
+                            <th *ngIf="!adminlogin">User Id</th>
+                            <th>User Name</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Gender</th>
+                            <th>Age</th>
+                            <th>Phone</th>
+                            <th *ngIf="!adminlogin">Password</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td *ngIf="!adminlogin">{{userinfo.userId}}</td>
+                            <td>{{userinfo.userName}}</td>
+                            <td>{{userinfo.fullName}}</td>
+                            <td>{{userinfo.emailId}}</td>
+                            <td>{{userinfo.gender}}</td>
+                            <td>{{userinfo.age}}</td>
+                            <td>{{userinfo.phone}}</td>
+                            <td *ngIf="!adminlogin">{{userinfo.password}}</td>
+                            <td><button class="btn btn-secondary btn-blcok" type="button" 
+                                [routerLink]="['/usermanage',userinfo.userId]" style="color: white;">Edit
+                                <span class="fa fa-pencil-square-o"></span> 
+                                </button>
+                            </td> 
+                             <!-- why router link is binded in different way? 
+                                because the ruoter link defined in the router modules has 'users/:id' 
+                                so we have to property bind the routerlink to the url properly -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>  
+<div class="container bg-light">
+    <nav class="navbar navbar-light bg-light m-auto">
+        <form class="container-fluid justify-content-start">
+
+            <label for="">Search Flights </label>
+            <button class="btn btn-outline-secondary me-4" type="button" ><i class="fa fa-plane" aria-hidden="true"></i></button>
+            <button class="btn btn-outline-primary btn-small me-3" type="submit" #oneway name="oneway" routerLink="searchflight">Oneway Trip</button>
+            <button class="btn btn-block btn-outline-primary btn-small me-3" type="submit" #round name="round" routerLink="roundtrip">Round Trip</button>
+
+        </form>
+    </nav> 
+    <router-outlet></router-outlet>
+</div>  
+
+
+    
+   

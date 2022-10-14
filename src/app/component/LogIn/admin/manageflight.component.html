@@ -1,0 +1,104 @@
+<p> have to create a http request in backend</p>
+<h3 style="color:red; text-align:center;">Manage Flight </h3>
+
+<div class="outer">
+    <h2 style="color:rgb(153, 53, 214); text-align: center;" class="font-weight-bold pt-3" >Updating the Flight schedule of FlightID {{editflight.flight}}</h2>
+<div class="container bg-light">
+    <h4 style="color:rgb(128, 76, 76); text-align: center;" class="font-weight-bold pt-3">Please give attention while filling <i class="fa fa-address-card" aria-hidden="true"></i></h4>
+    <div class="row">
+        <div class="panel-heading">
+            <h2 style="color:rgb(77, 20, 147); text-align: center;" class="font-weight-bold pt-3" > Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></h2>
+        </div>
+        <div class="panel-body">
+            <form action="" #tdFEform="ngForm" (ngSubmit)="onSubmit()">
+                
+                <div class="form-group">
+                    <div class="input-field">
+                        <label for="username"><span class="fa fa-fighter-jet p-2"></span>Select the Flight Name : </label>
+                        <select placeholder="Flightname" name="flightname" ngModel #fn="ngModel" class="form-control" [(ngModel)]="editflight.flightName" required>
+                            <option value="airindia">AirAsia</option>
+                            <option value="airindia">Air India</option>
+                            <option value="indigo">IndiGo</option>
+                            <option value="spicejet">SpiceJet</option>
+                        </select>                            
+                    </div>
+                </div>
+                <span class="help-block" *ngIf="!fn.valid&&fn.touched">please select the flight name</span>              
+                <div class="container">
+                    <div class="form-group">
+                        <div class="input-field">
+                            <label for="source"><span class="fa fa-map-marker p-2"></span>Enter the Source: </label>
+                            <select name="source" #source="ngModel" class="form-control" [(ngModel)]="editflight.source" required>
+                                <option value="bengaluru">Bengaluru</option>
+                                <option value="culcutta">culcutta</option>
+                                <option value="chennai">Chennai</option>
+                                <option value="delhi">Delhi</option>
+                                <option value="hyderbad">Hyderabad</option>
+                                <option value="mumbai">Mumbai</option>
+                                <option value="noida">Noida</option>
+                                <option value="pune">Pune</option>
+                            </select>
+                        </div>
+                    </div>
+                    <span class="help-block" *ngIf="!source.valid&&source.touched">please enter source</span>
+                    <div class="form-group">
+                        <label for="destination"><span class="fa fa-map-marker p-2"></span>Enter the destination: </label>
+                            <select name="destination" #destination="ngModel" class="form-control" 
+                            [(ngModel)]="editflight.destination" required>
+                                <option value="bengaluru">Bengaluru</option>
+                                <option value="culcutta">culcutta</option>
+                                <option value="chennai">Chennai</option>
+                                <option value="delhi">Delhi</option>
+                                <option value="hyderbad">Hyderabad</option>
+                                <option value="mumbai">Mumbai</option>
+                                <option value="noida">Noida</option>
+                                <option value="pune">Pune</option>
+                            </select>
+                    </div>
+                    <span class="help-block" *ngIf="!destination.valid&&destination.touched">please enter destination</span>
+                    <p *ngIf="source==destination" style="color:red">Please change the Source and Destination</p>
+                </div>
+                <div class="form-group">
+                    <div class="input-field">
+                        <label for="departureon"><span class="fa fa-calendar p-2"></span>Enter the departureon: </label>
+                        
+                        <input type="datetime-local" id="departureon" class="form-control" #departureon="ngModel"
+                         name="departureon" [(ngModel)]="editflight.departureOn" 
+                         value="2022-10-06T19:30"min="2022-10-19T00:00" max="2022-11-19T00:00"/>
+                    </div>
+                </div>
+                <span class="help-block" *ngIf="!departureon.valid&&departureon.touched">please enter departureon</span>
+                <div class="form-group">
+                    <div class="input-field">
+                        <label for="arrivalon"><span class="fa fa-calendar p-2"></span>Enter the arrivalon: </label>
+                        
+                        <input type="datetime-local" id="arrivalon" class="form-control" #arrivalon="ngModel"
+                         name="arrivalon" [(ngModel)]="editflight.arrivalOn" 
+                         value="2022-10-06T19:30"min="2022-10-19T00:00" max="2022-11-19T00:00"/>
+                    </div>
+                </div>  
+                <span class="help-block" *ngIf="!arrivalon.valid&&arrivalon.touched">please enter arrivalon number</span>                     
+
+                <div class="form-group pt-3">
+                    <div class="input-field">
+                        <label for="ePrice"><span class="fa fa-money p-2"></span>Enter the ePrice : </label>
+                        <input type="number" placeholder="ePrice" name="ePrice" #ePrice="ngModel" class="form-control" [(ngModel)]="editflight.ePrice" required/>
+                    </div>
+                </div>
+                <span class="help-block" *ngIf="!ePrice.valid&&ePrice.touched">please enter ePrice</span>
+                <div class="form-group pt-3">
+                    <div class="input-field">
+                        <label for="bPrice"><span class="fa fa-money p-2"></span>Enter the bPrice : </label>
+                        <input type="number" placeholder="bPrice" name="bPrice" #bPrice="ngModel" class="form-control" [(ngModel)]="editflight.bPrice" required/>
+                    </div>
+                </div>
+                <span class="help-block" *ngIf="!bPrice.valid&&bPrice.touched">please enter ePrice</span>
+                
+                <button class="btn btn-primary btn-blcok mt-4 w-100" type="submit" 
+                    (click)="ontoPassdata()" [disabled]="!tdFEform.valid">
+                            Submit<span class="fa fa-pencil-square-o"></span> 
+                </button>
+            </form>           
+    </div>
+</div>
+</div>

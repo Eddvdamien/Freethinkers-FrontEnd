@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="panel-heading">
+        <h4 style="color:rgb(201, 64, 243); text-align: center; font-style: oblique; font-family: 'Times New Roman', Times, serif;" class="font-weight-bold pt-3" >List of Flight in our Air Line Ticketing system DB <span style="color:black;" class="fa fa-database"></span> is:</h4>
+    </div>
+    <div class="panel-body">
+        <div class="container my-5">           
+            <table class="table" *ngIf="flightlist" #flightdetails>
+                <thead>
+                    <tr>
+                        <th>Flight Id</th>
+                        <th>Flight Name</th>
+                        <th>Source</th>
+                        <th>Destination</th>
+                        <th>DepartureOn</th>
+                        <th>ArrivalOn</th>
+                        <th>E-Class Price</th>
+                        <th>B-Class Price</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let i of flightlist">
+                        <td >{{i.flight}}</td>
+                        <td>{{i.flightName}}</td>
+                        <td>{{i.source}}</td>
+                        <td>{{i.destination}}</td>
+                        <td>{{i.departureOn}}</td>
+                        <td>{{i.arrivalOn}}</td>
+                        <td>{{i.ePrice}}</td>
+                        <td >{{i.bPrice}}</td>
+                        <td><button class="btn btn-outline-info btn-blcok" type="button" 
+                            [routerLink]="['manageflight',i.flight]" style="color:blueviolet;">Edit
+                            <span class="fa fa-pencil-square-o"></span> 
+                            </button>
+                        </td>                          
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+
+<div class="container bg-light">
+    <div class="row">
+        <div class="panel-heading">
+            <h1 style="color:blue; text-align: center;" class="font-weight-bold pt-3" >Admin Login </h1>
+        </div>
+        <div class="panel-body">
+            <form action="" #tdALform="ngForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <div class="input-field">
+                        <label for="adminname"><span class="fa fa-user p-2"></span>Enter the Admin Name : </label>
+                        <input type="text" placeholder="adminname" name="adminname" class="form-control"[(ngModel)]="adminname" required>
+                    </div>
+                </div>
+                <div class="form-group pt-3">
+                    <div class="input-field">
+                        <label for="password"><span class="fa fa-lock p-2"></span>Enter the Password : </label>
+                        <input type="password" placeholder="password" name="password" class="form-control" [(ngModel)]="password" required>
+                    </div>
+                </div>
+                <div class="form-inline fr mt-4">
+                    <a href="" id="link" class="font-weight-bold">Forgot the Password?</a>
+                </div>
+                <div class="d-grid gap-2 col-md-4">
+                   
+                        <button class="btn btn-lg btn-primary btn-block mt-4 " type="submit" (click)="onVerification()" 
+                        style="text-align:center;" [disabled]="!tdALform.valid">    Login    <span class="fa fa-key"></span></button></div>
+                
+            </form>
+        </div>
+    </div>
+</div>

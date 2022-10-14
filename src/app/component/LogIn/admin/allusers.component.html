@@ -1,0 +1,35 @@
+<div class="container my-5">
+    <h3 class="mb-3"> User Details:</h3>
+    <table class="table table-hover" *ngIf="userdetails && userdetails.length> 0">
+        <thead>
+            <tr>
+                <th *ngIf="!adminlogin">User Id</th>
+                <th>User Name</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th *ngIf="!adminlogin">Password</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of userdetails, let x = index">
+                <td *ngIf="!adminlogin">{{i.userId}}</td>
+                <td>{{i.userName}}</td>
+                <td>{{i.fullName}}</td>
+                <td>{{i.emailId}}</td>
+                <td>{{i.phone}}</td>
+                <td>{{i.gender}}</td>
+                <td>{{i.age}}</td>
+                <td *ngIf="!adminlogin">{{i.password}}</td>
+                <td><button class="btn btn-outline-secondary btn-blcok" type="button" [routerLink]="['edituser',i.userId]">Edit  <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>                 
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="!userdetails || userdetails.length <=0">No User records Found in the server</p>
+</div>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

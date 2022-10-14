@@ -1,0 +1,47 @@
+<div class="container bg-light">
+    <h3 class="heading" style="color:blueviolet; text-align:center">Booking Table</h3>
+    <h4 class="mb-3" style="color:rgb(9, 9, 153); font-style: oblique;">Enteries are:</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>Passenger Id</th>
+                <th>Flight Id</th>
+                <th>Passenger Name</th>
+                <th>Flight Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>E-Class Price</th>
+                <th>B-Class Price</th>           
+                <th>Source</th>
+                <th>Departure On</th>
+                <th>Destination</th>
+                <th>Arrival On</th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of btable">
+               
+                <td>{{i.passengerId}}</td>
+                <td>{{i.flight}}</td>
+                <td>{{i.passengerName}}</td>
+                <td>{{i.flightName}}</td>
+                <td>{{i.age}}</td>
+                <td>{{i.gender}}</td>
+                <td>{{i.ePrice}}</td>
+                <td>{{i.bPrice}}</td>
+               
+                
+                <td>{{i.source}}</td>
+                <td>{{i.departureOn}}</td>
+                <td>{{i.destination}}</td>
+               
+                <td>{{i.arrivalOn}}</td>
+                <td><a id="link" class="fa fa-pencil-square-o" style="text-decoration: none;">Edit</a></td>
+               
+            </tr>
+        </tbody>
+    </table>
+</div>

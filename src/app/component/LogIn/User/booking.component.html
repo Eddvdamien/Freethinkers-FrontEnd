@@ -1,0 +1,29 @@
+<p>booking component works</p>
+<div class="container bg-light">
+<div class="row">
+    <form #tdLast="ngForm" (ngSubmit)="onSubmit()" *ngIf="counter!=count">
+        <div class="input-field">
+            <label for="pname">Enter the Passenger Name:</label>
+            <input type="text" #name name="pname" id="pname" [(ngModel)]="pname" required class="form-control"/>
+        </div>
+        <div class="input-field">
+            <label for="age">Enter the Passenger Age:</label>
+            <input type="number" #age name="age" id="age" [(ngModel)]="page" required class="form-control"/>
+        </div>
+        <div class="input-field">
+            <label for="gender">Enter the Passenger Gender:</label>
+            <select name="gender" id="gender" required [(ngModel)]="pgender" #gender>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <button class="btn-secondary" type="button" (click)="ontonextentry()" *ngIf="counter!=count">Add Passenger</button>
+        
+    </form>
+    <div class="container bg-light" *ngIf="pricing">
+        <h3 style="color:rgb(79, 40, 77)">The total price of the Journey is <h3 style="color:red">{{totalprice}}</h3> </h3>
+        <p></p>
+    <button class="btn-secondary"type="submit"(click)="onSubmit()" *ngIf="counter==count">Submit</button>
+    </div>
+</div>
+</div>

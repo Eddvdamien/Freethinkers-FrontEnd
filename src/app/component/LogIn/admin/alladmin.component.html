@@ -1,0 +1,37 @@
+
+<div class="container my-5">
+    <h3 class="mb-3"> Admin Details:</h3>
+    <table class="table table-hover" *ngIf="admindetails && admindetails.length> 0">
+        <thead>
+            <tr>
+                <th *ngIf="!adminlogin">Admin Id</th>
+                <th>Admin Name</th>
+                <th>Full Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Phone</th>
+                
+                <th *ngIf="!adminlogin">Password</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of admindetails">
+                <td *ngIf="!adminlogin">{{i.adminId}}</td>
+                <td>{{i.adminName}}</td>
+                <td>{{i.fullName}}</td>
+                <td>{{i.age}}</td>
+                <td>{{i.gender}}</td>
+                <td>{{i.emailId}}</td>
+                <td>{{i.phone}}</td>                
+                <td *ngIf="!adminlogin">{{i.password}}</td>
+                <td><a [routerLink]="['/adminmanage',i.adminId]">Edit</a></td> 
+                 <!-- why router link is binded in different way? 
+                    because the ruoter link difined in the router moduls has 'users/:id' 
+                    so we have to property bind the routerlink to the url properly -->
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="!admindetails || admindetails.length <=0">No User records Found in the server</p>
+</div>
