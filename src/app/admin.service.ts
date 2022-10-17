@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { AdminM } from './models/admin.model';
 import { BookingM } from './models/booking.model';
 import { FlightM } from './models/flight.model';
+import { PassengerM } from './models/passenger.model';
 import { UserdetailsService } from './services/user.service';
 
 
@@ -79,7 +80,11 @@ updateFlightbyId(urlIDforupdate:number, updateflight:FlightM):Observable<FlightM
 
 //to cancell the booking from the booking table
 deleteBooking(bid:string):Observable<BookingM>{
-    return this.http.delete<BookingM>(this.adminurl+'/api/booking'+bid);
+
+    return this.http.delete<BookingM>(this.adminurl+'/api/booking/'+bid);
+}
+deletecancelrequest(id:number):Observable<PassengerM>{
+    return this.http.delete<PassengerM>(this.adminurl+'/api/passenger/'+id);
 }
 
 }

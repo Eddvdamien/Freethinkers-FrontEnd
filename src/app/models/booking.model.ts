@@ -1,5 +1,5 @@
 export interface BookingM{
-    bookingId:string;
+    bookingID:string;
     passengerId:number;
     passengerName:string;
     age:number;

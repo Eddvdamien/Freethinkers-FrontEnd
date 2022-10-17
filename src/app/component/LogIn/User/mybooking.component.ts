@@ -4,6 +4,7 @@ import { Subscription } from "rxjs";
 import { BookingM } from "src/app/models/booking.model";
 import { Cancellation } from "src/app/models/cancellation.model";
 import { CustomerM } from "src/app/models/customer.model";
+import { PassengerM } from "src/app/models/passenger.model";
 import { UserdetailsService } from "src/app/services/user.service";
 
 @Component({
@@ -27,10 +28,15 @@ export class MyBookingComponent implements OnInit, DoCheck
     bookinghistory:BookingM[]=[];
     destroy:Subscription;
     bhtable:boolean=false;
-    cancelrequest:Cancellation={
-        bookingid:''
+    cancelrequest:PassengerM={
+        passengerId:0,
+        passengerName:'',
+        age:0,
+        gender:''
     }
     cancereq:boolean=false;
+    cancelbid:string='';
+
     constructor(private uds:UserdetailsService, private route:Router){ 
        
     }
@@ -74,9 +80,19 @@ ontoloadHistory(){
 }
 onCancellation(bid:string){
     alert("Request has been send to Admin");
-    this.cancereq=true;
-this.cancelrequest.bookingid=bid;
-    this.uds.cancellation.emit(this.cancelrequest);
+    this.cancereq=true;    
+    this.cancelrequest.passengerName=bid;
+    //console.log(this.cancelrequest.passengerName);
+    //console.log(this.cancelrequest);
+    this.uds.cancelationrequest(this.cancelrequest).subscribe({
+        next: (response)=>{
+            console.log(response);
+        },
+        error: (reponse)=>{
+            console.log("error"+reponse);
+        }
+    })
+   
 }
 
 }

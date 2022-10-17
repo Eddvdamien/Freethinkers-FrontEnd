@@ -7,6 +7,7 @@ import { Cancellation } from '../models/cancellation.model';
 
 import { CustomerM } from '../models/customer.model';
 import { FlightM } from '../models/flight.model';
+import { PassengerM } from '../models/passenger.model';
 import{SearchFlight} from '../models/searchflight.model';
 
 @Injectable({
@@ -75,7 +76,7 @@ getflightbyID(id:number):Observable<FlightM>{
 
 //to push booking details to server
 createabooking( boo:BookingM):Observable<BookingM>{
-  boo.bookingId="00000000-0000-0000-0000-000000000000";
+  boo.bookingID="00000000-0000-0000-0000-000000000000";
   return this.http.post<BookingM>(this.usersUrl+'/api/booking',boo);
 }
 
@@ -86,8 +87,13 @@ bookinghistory(uid:number):Observable<BookingM[]>{
 
 //user rises a cancelation request to admin using services 
 
-cancellation=new EventEmitter<Cancellation>();
 
-cancelationrequest(){}
+
+cancelationrequest(cancelrequest:PassengerM){
+  return this.http.post<PassengerM>(this.usersUrl+'/api/passenger',cancelrequest);
+}
+cancellationGet():Observable<PassengerM[]>{
+  return this.http.get<PassengerM[]>(this.usersUrl+'/api/passenger');
+}
 
 }

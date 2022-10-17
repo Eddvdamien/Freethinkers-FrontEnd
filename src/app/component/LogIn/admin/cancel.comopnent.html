@@ -1,0 +1,24 @@
+<div class="container bg-light mt-3">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Booking Id</th>
+                <th>Accept</th>
+                <th>Decline</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of cancelBId">
+                <td>{{i.passengerName}}</td>
+                <td ><button class="btn btn-secondary btn-blcok" type="button" 
+                    style="color: white;"(click)="cancellationApproved(i.passengerName,i.passengerId)">Accept
+                    <span class="fa fa-pencil-square-o"></span> 
+                    </button></td>
+                <td><button class="btn btn-secondary btn-blcok" type="button" 
+                     style="color: white;" (click)="deletecancelrequest(i.passengerId)">Decline
+                    <span class="fa fa-pencil-square-o"></span> 
+                    </button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>  

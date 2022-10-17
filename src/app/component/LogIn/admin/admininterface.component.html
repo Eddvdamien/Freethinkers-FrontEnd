@@ -1,9 +1,10 @@
-<h2> admin interface works!</h2>
+
 <div class="container bg-light">
    <div class="continer bg-light">
         <div class="col-md-9 m-auto">
             <nav class="navbar navbar-light bg-dark">
                 <form class="container-fluid justify-content-start">
+                    <button class="btn btn-success m-auto" type="button" (click)="routetohome()">Home</button>
                     <button class="btn btn-success m-auto" type="button" [routerLink]="'alladmin'">All Admin</button>
                     <button class="btn btn-success m-auto" type="button" [routerLink]="'alluser'">All Users</button>            
                     <button class="btn btn-success m-auto" type="button" [routerLink]="'addflight'">Add Flights</button>                    
@@ -61,6 +62,9 @@
     </div>
     <router-outlet></router-outlet>
 </div>
+
+
+<!-- Created a seperate comopnent as it loading on every component at bootom as added after the -->
 <div class="container bg-light mt-3">
     <table class="table">
         <thead>
@@ -72,13 +76,13 @@
         </thead>
         <tbody>
             <tr *ngFor="let i of cancelBId">
-                <td>{{i.bookingid}}</td>
+                <td>{{i.passengerName}}</td>
                 <td ><button class="btn btn-secondary btn-blcok" type="button" 
-                    [routerLink]="['/adminmanage',admininfo.adminId]" style="color: white;"(click)="cancellationDecline(i.bookingid)">Accept
+                    style="color: white;"(click)="cancellationApproved(i.passengerName,i.passengerId)">Accept
                     <span class="fa fa-pencil-square-o"></span> 
                     </button></td>
                 <td><button class="btn btn-secondary btn-blcok" type="button" 
-                     style="color: white;" >Decline
+                     style="color: white;" (click)="deletecancelrequest(i.passengerId)">Decline
                     <span class="fa fa-pencil-square-o"></span> 
                     </button></td>
             </tr>

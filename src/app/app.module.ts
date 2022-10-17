@@ -55,7 +55,7 @@ import { MyBookingComponent } from './component/LogIn/User/mybooking.component';
     SearchFlightbyUserComponent,
     RoundTripComponent,
     BookingComponent,
-    MyBookingComponent
+    MyBookingComponent,
   
   ],
   imports: [

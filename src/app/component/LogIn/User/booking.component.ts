@@ -56,7 +56,7 @@ dflightresult:FlightM={
 // flightresultsssss:FlightM[]=[];
 // bookignarray:BookingM[]=[];
 bookingtable:BookingM={
-    bookingId:'',
+    bookingID:'',
     passengerId:this.userdetails.userId,
     passengerName:'',
     age:0,

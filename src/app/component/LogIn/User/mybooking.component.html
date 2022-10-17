@@ -10,7 +10,7 @@
     <table class="table" *ngIf="bhtable">
         <thead>
             <tr>
-                
+                <th>BookingId</th>
                 <th>Passenger Id</th>
                 <th>Flight Id</th>
                 <th>Passenger Name</th>
@@ -25,12 +25,13 @@
                 <th>Arrival On</th>
                 
                 
+                
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let i of bookinghistory">
                 
-               
+                <td>{{i.bookingID}}</td>
                 <td>{{i.passengerId}}</td>
                 <td>{{i.flight}}</td>
                 <td>{{i.passengerName}}</td>
@@ -46,7 +47,8 @@
                 <td>{{i.destination}}</td>
                
                 <td>{{i.arrivalOn}}</td>
-                <td><a id="link" class="fa fa-pencil-square-o" style="text-decoration: none;font-weight: 100;" (click)="onCancellation(i.bookingId)">Cancel Request</a> </td>
+                
+                <td><a id="link" class="fa fa-pencil-square-o" style="text-decoration: none;font-weight: 100; cursor:pointer; " (click)="onCancellation(i.bookingID)" >Cancel Request</a> </td>
                
             </tr>
         </tbody>

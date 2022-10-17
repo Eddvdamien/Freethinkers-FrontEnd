@@ -4,6 +4,7 @@ import { Subscription } from "rxjs";
 import { AdminService } from "src/app/admin.service";
 import { AdminM } from "src/app/models/admin.model";
 import { Cancellation } from "src/app/models/cancellation.model";
+import { PassengerM } from "src/app/models/passenger.model";
 import { UserdetailsService } from "src/app/services/user.service";
 
 @Component({
@@ -24,18 +25,20 @@ export class AdminInterfceComponent implements OnInit, OnDestroy{
     destroy:Subscription;
     urlid:string;
     
-    cancelBId:Cancellation[]=[];
+    cancelBId:PassengerM[]=[];
+
     constructor(
         private as: AdminService,
         private ar: ActivatedRoute,
         private route: Router,
         private uds:UserdetailsService
     ){
-        this.uds.cancellation.subscribe(
-            (bid:Cancellation)=>{
-                alert('Cancellation request from booking Id'+ bid);
-                this.cancelBId.push(bid);
-        });
+        this.uds.cancellationGet().subscribe({
+            next: (response)=>{
+                //alert('Cancellation request from booking Id'+ response);
+                this.cancelBId=response;
+                console.log(response);
+        }});
     }
     ngOnInit(): void {
         this.urlid= this.ar.snapshot.params['id'];
@@ -61,16 +64,37 @@ export class AdminInterfceComponent implements OnInit, OnDestroy{
     ngOnDestroy(): void {
         this.destroy.unsubscribe();
     }
-    cancellationDecline(cancell:string){
+    routetohome(){
+        this.route.navigate(['/ai/',this.urlid]);
+    }
+
+
+
+    cancellationApproved(cancell:string, crid:number){
 this.as.deleteBooking(cancell).subscribe({
     next:(response)=>{
         alert('Booking Cancelled');
+        this.route.navigate(['/ai/',this.urlid]);
     },
     error:(response)=>{
         console.log(response);
     }
-})
-    }
+    })
+    this.as.deletecancelrequest(crid).subscribe({
+        next:(response)=>{
+            console.log(response);
+        }
+    })
+}
+deletecancelrequest(crid:number){
+    this.as.deletecancelrequest(crid).subscribe({
+        next: (response)=>{
+            alert('cancellation request is declined for '+response.passengerName);
+            this.route.navigate(['/ai/',this.urlid]);
+        }
+    });
+    
+}
 
 
 }
